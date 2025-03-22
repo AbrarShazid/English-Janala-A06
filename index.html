@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google font cdn  -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- tailwind + daisyUI cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font awesome cdn  -->
+    <script
+      src="https://kit.fontawesome.com/2b2c3a5306.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- internal css link  -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .active {
+        background-color: #422ad5;
+        color: white;
+      }
+    </style>
+
+    <!-- theme variables  -->
+
+    <style type="text/tailwindcss">
+      @theme {
+      }
+    </style>
+
+    <title>English Janala</title>
+  </head>
+  <body style="font-family: 'Poppins', sans-serif">
+    <!-- header  -->
+    <header id="navbar" class="sticky top-0 z-50 hidden">
+      <!-- navbar, hide at initial stage  -->
+      <nav
+        class="border border-t-0 border-x-0 border-b-[#C6BDBD] bg-[#C8C8C833] px-[3%] py-[1%] flex justify-between items-center bg-white/30 backdrop-blur-lg shadow-sm "
+      >
+        <!-- left side logo  -->
+        <div>
+          <h2 class="flex items-center text-xl">
+            <span class="font-bold">English</span>
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/fluency/48/windows-10.png"
+              alt="windows-10"
+            />
+            জানালা
+          </h2>
+        </div>
+        <!-- right side  -->
+        <div class="text-[#422AD5] font-semibold flex gap-3">
+          <a href="#faq"
+            ><button class="border border-[#422AD5] hover:bg-[#422AD5] hover:text-white py-2 px-3 rounded">
+              <i class="fa-solid fa-circle-question"></i> FAQ
+            </button></a
+          >
+
+          <a href="#learn">
+            <button class="border border-[#422AD5] py-2 px-3 rounded hover:bg-[#422AD5] hover:text-white">
+              <i class="fa-solid fa-book-open"></i> Learn
+            </button>
+          </a>
+
+          <button
+            onclick="logOut()"
+            class="border border-[#422AD5] hover:bg-[#422AD5] hover:text-white py-2 px-4 rounded"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- banner part  -->
+
+    <section
+      id="banner" 
+      class="px-[3%] grid grid-cols-2 items-center min-h-screen"
+    >
+      <!-- log in part  -->
+      <div class="space-y-4">
+        <h1 class="text-4xl font-bold">
+          <span class="text-[#00BCFF]">English </span>is Easy!!
+        </h1>
+        <p class="text-2xl font-medium opacity-80">
+          আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+          আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
+          অন্য একটি Level এ..
+        </p>
+
+        <!-- form part  -->
+
+        <div>
+          <form id="loginForm">
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter Your Name"
+              class="p-2 border border-gray-300 rounded mb-3 w-1/2"
+            />
+            <br />
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter: 123456"
+              class="p-2 border border-gray-300 rounded mb-3 w-1/2"
+            />
+            <br />
+            <button
+              type="submit"
+              class="border border-[#3D26C7] bg-[#422AD5] text-white py-2 px-3 rounded-md hover:bg-indigo-900"
+            >
+              Get Started
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- hero image  -->
+      <div class="px-[10%]">
+        <img src="assets/hero-student.png" alt="" />
+      </div>
+    </section>
+
+    <!-- main part  -->
+
+    <main id="learn" class="scroll-mt-20 mt-[7%] px-[3%] flex flex-col gap-8 items-center min-h-screen hidden">
+      <h2 class="font-bold text-3xl">
+        <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+      </h2>
+      <!-- lesson name container  -->
+
+      <section id="lessonIndex" class="flex gap-3"></section>
+
+      <!-- main vocab section  -->
+
+      <section class="w-full bg-[#e0e0e0] rounded-3xl py-6">
+        <!-- spinner or loader  -->
+        <section id="loader" class="flex justify-center hidden">
+          <span class="loading loading-dots loading-xl"></span>
+        </section>
+
+        <!-- all card container  -->
+        <section id="cardContainer" class="gap-4 px-6 text-center">
+          <!-- initially show this  -->
+          <div class="flex flex-col gap-2 items-center py-[3%]">
+            <p class="text-sm text-[#79716B]">
+              আপনি এখনও কোন লেসন সিলেক্ট করেননি
+            </p>
+            <h3 class="font-medium text-2xl text-[#292524]">
+              একটি Lesson Select করুন।
+            </h3>
+          </div>
+        </section>
+
+        <!-- info modal part  -->
+
+        <!-- Open the modal using ID.showModal() method -->
+
+        <dialog id="my_modal_1" class="modal">
+          <div id="infoModal" class="modal-box p-3"></div>
+        </dialog>
+      </section>
+    </main>
+
+    <!-- faq section  -->
+
+    <section id="faq" class="scroll-mt-20 px-[3%] min-h-screen hidden">
+      <h2 class="text-3xl font-bold mb-5 text-center">
+        <span class="text-[#00BCFF]">Frequently</span> Asked Questions
+      </h2>
+
+      <div class="space-y-3 mt-[5%]">
+        <div class="collapse collapse-plus bg-[#e0e0e0] border border-base-300">
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold font-medium">
+            1. What is the difference between var, let, and const?
+          </div>
+          <div class="collapse-content text-sm text-[#62748E] pr-[5%]">
+            Var is the old method to declare a variable. We don't use this
+            anymore. Let is block scoped and we can change this later. But const
+            is same as let expect it cannot change later .
+          </div>
+        </div>
+
+        <div class="collapse collapse-plus bg-[#e0e0e0] border border-base-300">
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold font-medium">
+            2. What is the difference between map(), forEach(), and filter()?
+          </div>
+          <div class="collapse-content text-sm text-[#62748E] pr-[5%]">
+            We can use map() to change element (like-each element can multiply
+            by 2). forEach() basically iterates over elements but does not
+            return anything . filter() basically select elements based on a
+            condition.
+          </div>
+        </div>
+
+        <div class="collapse collapse-plus bg-[#e0e0e0] border border-base-300">
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold font-medium">
+            3. Explain arrow functions and how they are different from regular
+            functions?
+          </div>
+          <div class="collapse-content text-sm text-[#62748E] pr-[5%]">
+            Arrow function is shorter than regular function. Arrow function
+            return implicitly if we write it in one line.
+          </div>
+        </div>
+
+        <div class="collapse collapse-plus bg-[#e0e0e0] border border-base-300">
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold font-medium">
+            4. How JavaScript Promises work?
+          </div>
+          <div class="collapse-content text-sm text-[#62748E] pr-[5%]">
+            Js promise work on 3 states. 1.Pending = Initial state, operation
+            not completed. 2. Fulfilled = Operation completed.. 3. Rejected =
+            Operation failed.
+          </div>
+        </div>
+
+        <div class="collapse collapse-plus bg-[#e0e0e0] border border-base-300">
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold font-medium">
+            5. How closures work in JavaScript?
+          </div>
+          <div class="collapse-content text-sm text-[#62748E] pr-[5%]">
+            When a function is created inside another function, it creates a
+            closure. The inner function remembers the variables of the outer
+            function. Even after the outer function returns, the inner function
+            still has access to those variables.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer  -->
+    <footer
+      class="flex items-center justify-between px-[3%] py-[3%] border-[4px] border-x-0 border-b-0 border-t-[#FFEBEB] mt-[2%]"
+    >
+      <!-- left side  -->
+      <div class="space-y-2">
+        <h3 class="flex items-center text-xl mb-3">
+          <span class="font-bold">English</span>
+          <img
+            width="48"
+            height="48"
+            src="https://img.icons8.com/fluency/48/windows-10.png"
+            alt="windows-10"
+          />
+          জানালা
+        </h3>
+        <p class="font-semibold text-xl">ইংরেজি শিখুন সহজে</p>
+        <p>Providing ED-Tech Applications since 2025</p>
+      </div>
+
+      <!-- right side  -->
+      <div class="space-y-3">
+        <p class="text-sm opacity-60 text-[#18181B] font-semibold">FOLLOW US</p>
+        <!-- icons  -->
+        <div class="flex gap-4 text-3xl">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            class="hover:text-blue-800"
+          >
+            <i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.youtube.com"
+            target="_blank"
+            class="hover:text-pink-800"
+          >
+            <i class="fa-brands fa-youtube"></i
+          ></a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            class="hover:text-red-800"
+          >
+            <i class="fa-brands fa-instagram"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="Scripts/index.js"></script>
+  </body>
+</html>
